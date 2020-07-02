@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Transaction;
-use App\Asset;
+use App\Asset; 
+use App\User;
+use App\Events\AssetDangerLevel;
 use Auth;
 
 class TransactionsController extends Controller
 {
-    public function toStock(Request $request,$id)
+    public function store(Request $request,$id)
     {
     	// dd($request->all());
     	$transaction = new Transaction();
@@ -39,9 +41,39 @@ class TransactionsController extends Controller
 
     	$transaction->user_id  = Auth::user()->id;
 
+
+
     	$asset->save();
 
+
+        // --------------------send email--------------------------------
+
     	$transaction->save();
+
+        $users = User::all();
+
+        // dd($asset->name);
+
+        
+        if($asset->danger_level >= $asset->stock){
+
+        $user_array  = [];
+
+        $asset_name = $asset->name;
+
+        // dd($asset->name);
+
+        foreach ($users as $key => $user) {
+        array_push($user_array, $user->email);
+          
+          }
+
+        event (new AssetDangerLevel($asset_name,$user_array));
+        }
+
+        // -----------------end send email----------------------------
+
+
 
     	return  response()->json(['content' => $transaction, 'state' => 200]);
          
@@ -49,7 +81,7 @@ class TransactionsController extends Controller
 
     }
 
-    public function traceAsset($id)
+    public function show($id)
     {
     	 // dd($id);
     	$transaction = Transaction::where('asset_id',$id)->first();

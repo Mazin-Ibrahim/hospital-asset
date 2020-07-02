@@ -2214,7 +2214,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CreateAsset__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateAsset */ "./resources/js/components/asset/CreateAsset.vue");
 /* harmony import */ var _EditAsset__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditAsset */ "./resources/js/components/asset/EditAsset.vue");
-/* harmony import */ var _stock_Stocks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./stock/Stocks */ "./resources/js/components/asset/stock/Stocks.vue");
+/* harmony import */ var _transaction_Transactions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./transaction/Transactions */ "./resources/js/components/asset/transaction/Transactions.vue");
+//
 //
 //
 //
@@ -2269,7 +2270,7 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     CreateAsset: _CreateAsset__WEBPACK_IMPORTED_MODULE_0__["default"],
     EditAsset: _EditAsset__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Stocks: _stock_Stocks__WEBPACK_IMPORTED_MODULE_2__["default"]
+    Transactions: _transaction_Transactions__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -2547,10 +2548,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/asset/stock/Stocks.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/asset/stock/Stocks.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/asset/transaction/Transactions.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/asset/transaction/Transactions.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4177,7 +4178,7 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("Stocks", {
+      _c("Transactions", {
         attrs: { showing: _vm.openStocks },
         on: {
           close: function($event) {
@@ -4199,109 +4200,62 @@ var render = function() {
             "tbody",
             _vm._l(_vm.assets, function(asset, index) {
               return _c("tr", { staticClass: "hover:bg-blue-100" }, [
-                _c(
-                  "td",
-                  {
-                    staticClass:
-                      "py-4 px-6 border-b border-gray-100 text-center"
-                  },
-                  [_vm._v(_vm._s(asset.name))]
-                ),
+                _c("td", { staticClass: "px-8 py-1 border text-center" }, [
+                  _vm._v(_vm._s(asset.name))
+                ]),
                 _vm._v(" "),
-                _c(
-                  "td",
-                  {
-                    staticClass:
-                      "py-4 px-6 border-b border-gray-100 text-center"
-                  },
-                  [_vm._v(_vm._s(asset.descr))]
-                ),
+                _c("td", { staticClass: "px-8 py-1 border text-center" }, [
+                  _vm._v(_vm._s(asset.descr))
+                ]),
                 _vm._v(" "),
-                _c(
-                  "td",
-                  {
-                    staticClass:
-                      "py-4 px-6 border-b border-gray-100 text-center"
-                  },
-                  [_vm._v(_vm._s(asset.stock))]
-                ),
+                _c("td", { staticClass: "px-8 py-1 border text-center" }, [
+                  _vm._v(_vm._s(asset.stock))
+                ]),
                 _vm._v(" "),
-                _c(
-                  "td",
-                  {
-                    staticClass:
-                      "py-4 px-6 border-b border-gray-100 text-center"
-                  },
-                  [_vm._v(_vm._s(asset.danger_level))]
-                ),
+                _c("td", { staticClass: "px-8 py-1 border text-center" }, [
+                  _vm._v(_vm._s(asset.danger_level))
+                ]),
                 _vm._v(" "),
-                _c(
-                  "td",
-                  {
-                    staticClass:
-                      "py-4 px-6 border-b border-gray-100 text-center flex items-center my-4"
-                  },
-                  [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "py-1 px-2 w-24 rounded bg-blue-400 mr-2",
-                        on: {
-                          click: function($event) {
-                            return _vm.openChangeAsset(index)
-                          }
+                _c("td", { staticClass: "px-8 py-1 border" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "py-1 px-2 w-24 rounded bg-blue-400",
+                      on: {
+                        click: function($event) {
+                          return _vm.openChangeAsset(index)
                         }
-                      },
-                      [_vm._v("Edit")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      { staticClass: "py-1 px-2 w-24 rounded bg-red-400" },
-                      [_vm._v("Delete")]
-                    )
-                  ]
-                ),
+                      }
+                    },
+                    [_vm._v("Edit")]
+                  )
+                ]),
                 _vm._v(" "),
-                _c(
-                  "td",
-                  {
-                    staticClass:
-                      "py-4 px-6 border-b border-gray-100 text-center my-8"
-                  },
-                  [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "py-1 px-2 w-28 rounded bg-green-400",
-                        on: {
-                          click: function($event) {
-                            return _vm.openStock(index)
-                          }
+                _c("td", { staticClass: "px-8 py-1 border" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "py-1 px-2 w-28 rounded bg-green-400",
+                      on: {
+                        click: function($event) {
+                          return _vm.openStock(index)
                         }
-                      },
-                      [_vm._v("\n\t\t\t\t\t\tAdd&Remove\n\t\t\t\t\t")]
-                    )
-                  ]
-                ),
+                      }
+                    },
+                    [_vm._v("\n\t\t\t\t\t\tAdd&Remove\n\t\t\t\t\t")]
+                  )
+                ]),
                 _vm._v(" "),
-                _c(
-                  "td",
-                  {
-                    staticClass:
-                      "py-4 px-6 border-b border-gray-100 text-center"
-                  },
-                  [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "py-1 px-2 w-24 rounded bg-yellow-400",
-                        attrs: { href: "/trace/" + "asset/" + asset.id }
-                      },
-                      [_vm._v("View")]
-                    )
-                  ]
-                )
+                _c("td", { staticClass: "px-8 py-1 border" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "py-1 px-2 w-24 rounded bg-yellow-700",
+                      attrs: { href: "/show/" + "asset/" + asset.id }
+                    },
+                    [_vm._v("View")]
+                  )
+                ])
               ])
             }),
             0
@@ -4319,59 +4273,33 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c(
-          "th",
-          {
-            staticClass:
-              "py-4 px-6 bg-gray-200 font-sans font-medium uppercase text-sm text-grey border-b border-200"
-          },
-          [_vm._v("Name")]
-        ),
+        _c("th", { staticClass: "px-8 py-2 border text-center" }, [
+          _vm._v("Name")
+        ]),
         _vm._v(" "),
-        _c(
-          "th",
-          {
-            staticClass:
-              "py-4 px-6 bg-gray-200 font-sans font-medium uppercase text-sm text-grey border-b border-200"
-          },
-          [_vm._v("Descrption")]
-        ),
+        _c("th", { staticClass: "px-8 py-2 border text-center" }, [
+          _vm._v("Descrption")
+        ]),
         _vm._v(" "),
-        _c(
-          "th",
-          {
-            staticClass:
-              "py-4 px-6 bg-gray-200 font-sans font-medium uppercase text-sm text-grey border-b border-200"
-          },
-          [_vm._v("Current Stock")]
-        ),
+        _c("th", { staticClass: "px-8 py-2 border text-center" }, [
+          _vm._v("Current Stock")
+        ]),
         _vm._v(" "),
-        _c(
-          "th",
-          {
-            staticClass:
-              "py-4 px-6 bg-gray-200 font-sans font-medium uppercase text-sm text-grey border-b border-200"
-          },
-          [_vm._v("Danger lavel")]
-        ),
+        _c("th", { staticClass: "px-8 py-2 border text-center" }, [
+          _vm._v("Danger lavel")
+        ]),
         _vm._v(" "),
-        _c(
-          "th",
-          {
-            staticClass:
-              "py-4 px-6 bg-gray-200 font-sans font-medium uppercase text-sm text-grey border-b border-200 text-center"
-          },
-          [_vm._v("Control")]
-        ),
+        _c("th", { staticClass: "px-8 py-2 border text-center" }, [
+          _vm._v("Control")
+        ]),
         _vm._v(" "),
-        _c(
-          "th",
-          {
-            staticClass:
-              "py-4 px-6 bg-gray-200 font-sans font-medium uppercase text-sm text-grey border-b border-200 text-center"
-          },
-          [_vm._v("Stocks")]
-        )
+        _c("th", { staticClass: "px-8 py-2 border text-center" }, [
+          _vm._v("Stocks")
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "px-8 py-2 border text-center" }, [
+          _vm._v("Transactions")
+        ])
       ])
     ])
   }
@@ -4778,10 +4706,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/asset/stock/Stocks.vue?vue&type=template&id=79017520&":
-/*!*********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/asset/stock/Stocks.vue?vue&type=template&id=79017520& ***!
-  \*********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/asset/transaction/Transactions.vue?vue&type=template&id=46c8f9d0&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/asset/transaction/Transactions.vue?vue&type=template&id=46c8f9d0& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -18225,19 +18153,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/asset/stock/Stocks.vue":
-/*!********************************************************!*\
-  !*** ./resources/js/components/asset/stock/Stocks.vue ***!
-  \********************************************************/
-/*! no static exports found */
+/***/ "./resources/js/components/asset/transaction/Transactions.vue":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/asset/transaction/Transactions.vue ***!
+  \********************************************************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Stocks_vue_vue_type_template_id_79017520___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Stocks.vue?vue&type=template&id=79017520& */ "./resources/js/components/asset/stock/Stocks.vue?vue&type=template&id=79017520&");
-/* harmony import */ var _Stocks_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Stocks.vue?vue&type=script&lang=js& */ "./resources/js/components/asset/stock/Stocks.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Stocks_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Stocks_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Transactions_vue_vue_type_template_id_46c8f9d0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Transactions.vue?vue&type=template&id=46c8f9d0& */ "./resources/js/components/asset/transaction/Transactions.vue?vue&type=template&id=46c8f9d0&");
+/* harmony import */ var _Transactions_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Transactions.vue?vue&type=script&lang=js& */ "./resources/js/components/asset/transaction/Transactions.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -18246,9 +18173,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Stocks_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Stocks_vue_vue_type_template_id_79017520___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Stocks_vue_vue_type_template_id_79017520___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Transactions_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Transactions_vue_vue_type_template_id_46c8f9d0___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Transactions_vue_vue_type_template_id_46c8f9d0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -18258,38 +18185,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/asset/stock/Stocks.vue"
+component.options.__file = "resources/js/components/asset/transaction/Transactions.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/asset/stock/Stocks.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************!*\
-  !*** ./resources/js/components/asset/stock/Stocks.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************/
-/*! no static exports found */
+/***/ "./resources/js/components/asset/transaction/Transactions.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/asset/transaction/Transactions.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Stocks_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Stocks.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/asset/stock/Stocks.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Stocks_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Transactions_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Transactions.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/asset/transaction/Transactions.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Transactions_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/asset/stock/Stocks.vue?vue&type=template&id=79017520&":
-/*!***************************************************************************************!*\
-  !*** ./resources/js/components/asset/stock/Stocks.vue?vue&type=template&id=79017520& ***!
-  \***************************************************************************************/
+/***/ "./resources/js/components/asset/transaction/Transactions.vue?vue&type=template&id=46c8f9d0&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/asset/transaction/Transactions.vue?vue&type=template&id=46c8f9d0& ***!
+  \***************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Stocks_vue_vue_type_template_id_79017520___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Stocks.vue?vue&type=template&id=79017520& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/asset/stock/Stocks.vue?vue&type=template&id=79017520&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Stocks_vue_vue_type_template_id_79017520___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Transactions_vue_vue_type_template_id_46c8f9d0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Transactions.vue?vue&type=template&id=46c8f9d0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/asset/transaction/Transactions.vue?vue&type=template&id=46c8f9d0&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Transactions_vue_vue_type_template_id_46c8f9d0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Stocks_vue_vue_type_template_id_79017520___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Transactions_vue_vue_type_template_id_46c8f9d0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

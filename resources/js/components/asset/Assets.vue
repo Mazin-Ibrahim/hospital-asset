@@ -6,37 +6,38 @@
 		<CreateAsset :showing="openCreateAsset" @close="openCreateAsset = false" @newAsset="addToAsset"></CreateAsset>
 		<EditAsset  :showingEditModal="openEditAsset" :assetValue="asset" @close="openEditAsset = false"></EditAsset>
 
-		<Stocks :showing="openStocks" @close="openStocks = false"></Stocks>
+		<Transactions :showing="openStocks" @close="openStocks = false"></Transactions>
 		<table class="text-left m-4 " style="border-collapse:collapse">
 			<thead>
 				<tr>
-					<th class="py-4 px-6 bg-gray-200 font-sans font-medium uppercase text-sm text-grey border-b border-200">Name</th>
-					<th class="py-4 px-6 bg-gray-200 font-sans font-medium uppercase text-sm text-grey border-b border-200">Descrption</th>
-					<th class="py-4 px-6 bg-gray-200 font-sans font-medium uppercase text-sm text-grey border-b border-200">Current Stock</th>
-					<th class="py-4 px-6 bg-gray-200 font-sans font-medium uppercase text-sm text-grey border-b border-200">Danger lavel</th>
-					<th class="py-4 px-6 bg-gray-200 font-sans font-medium uppercase text-sm text-grey border-b border-200 text-center">Control</th>
-					<th class="py-4 px-6 bg-gray-200 font-sans font-medium uppercase text-sm text-grey border-b border-200 text-center">Stocks</th>
+					<th class= "px-8 py-2 border text-center">Name</th>
+					<th class= "px-8 py-2 border text-center">Descrption</th>
+					<th class= "px-8 py-2 border text-center">Current Stock</th>
+					<th class= "px-8 py-2 border text-center">Danger lavel</th>
+					<th class= "px-8 py-2 border text-center">Control</th>
+					<th class= "px-8 py-2 border text-center">Stocks</th>
+					<th class= "px-8 py-2 border text-center">Transactions</th>
 				</tr>
 
 			</thead>
 			<tbody>
 				<tr class="hover:bg-blue-100" v-for="(asset,index) in assets">
-					<td class="py-4 px-6 border-b border-gray-100 text-center">{{ asset.name }}</td>
-					<td class="py-4 px-6 border-b border-gray-100 text-center">{{ asset.descr }}</td>
-					<td class="py-4 px-6 border-b border-gray-100 text-center">{{ asset.stock }}</td>
-					<td class="py-4 px-6 border-b border-gray-100 text-center">{{ asset.danger_level }}</td>
-					<td class="py-4 px-6 border-b border-gray-100 text-center flex items-center my-4">
-						<button class="py-1 px-2 w-24 rounded bg-blue-400 mr-2" @click="openChangeAsset(index)">Edit</button>
-						<button class="py-1 px-2 w-24 rounded bg-red-400">Delete</button>
+					<td class="px-8 py-1 border text-center">{{ asset.name }}</td>
+					<td class="px-8 py-1 border text-center">{{ asset.descr }}</td>
+					<td class="px-8 py-1 border text-center">{{ asset.stock }}</td>
+					<td class="px-8 py-1 border text-center">{{ asset.danger_level }}</td>
+					<td class="px-8 py-1 border">
+						<button class="py-1 px-2 w-24 rounded bg-blue-400" @click="openChangeAsset(index)">Edit</button>
+						<!-- <button class="py-1 px-2 w-24 rounded bg-red-400">Delete</button> -->
 					</td>
 
-					<td class="py-4 px-6 border-b border-gray-100 text-center my-8">
+					<td class="px-8 py-1 border">
 						<button @click="openStock(index)" class="py-1 px-2 w-28 rounded bg-green-400">
 							Add&Remove
 						</button>
 					</td>
-					<td class="py-4 px-6 border-b border-gray-100 text-center">
-						<a :href="'/trace/'+'asset/'+ asset.id" class="py-1 px-2 w-24 rounded bg-yellow-400">View</a >
+					<td class="px-8 py-1 border">
+						<a :href="'/show/'+'asset/'+ asset.id" class="py-1 px-2 w-24 rounded bg-yellow-700">View</a >
 
 					</td>
 				</tr>
@@ -49,14 +50,14 @@
 
 import CreateAsset from './CreateAsset'
 import EditAsset from './EditAsset'
-import Stocks from './stock/Stocks'
+import Transactions from './transaction/Transactions'
 export default{
 
 	components:{
         
         CreateAsset,
         EditAsset,
-        Stocks,
+        Transactions,
 
 	},
 

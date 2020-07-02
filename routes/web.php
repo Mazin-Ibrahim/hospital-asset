@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Transaction;
+use App\Asset;
+use App\User;
+use App\Events\AssetDangerLevel;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +33,7 @@ Route::view('/ui', 'ui.index');
 
 // ---------------------Asset-------------------------------
 
-Route::resource('assets','AssetsController');
+Route::resource('assets','AssetsController')->only(['create', 'update','store','index']);
 
 
 
@@ -38,28 +41,41 @@ Route::resource('assets','AssetsController');
 
 // -----------------User-------------------------------------
 
-Route::resource('users','UsersController');
+Route::resource('users','UsersController')->only(['create', 'update','store','index']);
 
 
 
 
 //-------------------transaction----------------------------------
 
-Route::post('/transactions/{id}','TransactionsController@toStock');
+Route::post('/transactions/{id}','TransactionsController@store');
 
-Route::get('/trace/asset/{id}','TransactionsController@traceAsset');
+Route::get('/show/asset/{id}','TransactionsController@show');
 
 
 
-// Route::get('/test/{id}',function($id){
+// Route::get('/test',function(){
 
-//  $trans = Transaction::where('asset_id',$id)->get();
+// 	$users = User::all();
+// 	$assets = Asset::all();
 
-//  $mazin = array();
+// 	$asset_array = [];
+// 	$user_array  = [];
 
-//  foreach ($trans as $key => $t) {
-//  	array_push($mazin, $t->user->name);
-//  }
+// 	foreach ($assets as $key => $asset) {
+// 		if($asset->dengar_level <= $asset->stock){
 
-//  dd($mazin);
+// 		 array_push($asset_array, $asset->name);
+
+// 		}
+// 	}
+
+// 	// dd($user_array);
+
+// 	foreach ($users as $key => $user) {
+// 		array_push($user_array, $user->email);
+// 	}
+
+//    event (new AssetDangerLevel($asset_array,$user_array));
+
 // });

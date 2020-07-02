@@ -11,4 +11,14 @@ class Asset extends Model
       public function stocks(){
       	return $this->hasOne(Stock::class);
       }
+
+
+      public function dangerLevel(){
+
+      	if($this->danger_level >= $this->stock){
+
+   
+      		return $this->name;
+      	}
+      }
 }
