@@ -22,6 +22,18 @@ Vue.component('Assets', require('./components/asset/Assets').default);
 Vue.component('Users', require('./components/user/Users').default);
 
 
+
+// ----------------------Auth---------------------------------------
+
+Vue.component('Roles',require('./components/auth/role/Roles').default);
+
+Vue.component('Permissions',require('./components/auth/permission/Permissions').default);
+
+
+
+
+
+
 const app = new Vue({
     el: '#app',
 });

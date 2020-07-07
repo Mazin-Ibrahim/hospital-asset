@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Transaction;
-use App\Asset;
-use App\User;
-use App\Events\AssetDangerLevel;
+use App\mazin;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -53,29 +53,43 @@ Route::post('/transactions/{id}','TransactionsController@store');
 Route::get('/show/asset/{id}','TransactionsController@show');
 
 
+//-----------------------------Role----------------------------------
 
-// Route::get('/test',function(){
 
-// 	$users = User::all();
-// 	$assets = Asset::all();
+Route::get('/roles','RolesController@showRoles')->name('roles');
+Route::post('/roles/store','RolesController@store');
+Route::get('/roles/index','RolesController@index');
+Route::post('/roles/update/{id}','RolesController@update');
 
-// 	$asset_array = [];
-// 	$user_array  = [];
 
-// 	foreach ($assets as $key => $asset) {
-// 		if($asset->dengar_level <= $asset->stock){
+// ---------------------- Give Role-----------------------------
 
-// 		 array_push($asset_array, $asset->name);
+Route::get('/give/role/{id}','RolesController@giveRole');
+Route::post('/postGiveRole','RolesController@postGiveRole')->name('postGiveRole');
 
-// 		}
-// 	}
 
-// 	// dd($user_array);
 
-// 	foreach ($users as $key => $user) {
-// 		array_push($user_array, $user->email);
-// 	}
 
-//    event (new AssetDangerLevel($asset_array,$user_array));
 
-// });
+
+//---------------------------Permissions------------------------------
+
+
+Route::get('/permissions','PermissionsController@showPermissions');
+Route::post('/permissions/store','PermissionsController@store');
+Route::get('/permissions/index','PermissionsController@index');
+Route::post('/permissions/update/{id}','PermissionsController@update');
+
+// ---------------------- Give Permission-----------------------------
+
+Route::get('/give/permission/{id}','PermissionsController@givePermission');
+Route::post('/postGivePermission','PermissionsController@postGivePermission')->name('postGivePermission');
+
+
+Route::get('/hasRoleDoctor','CheckUserController@checkRoleDoctors');
+Route::get('/hasRoleAdministrator','CheckUserController@checkRoleAdministrator');
+
+
+Route::get('/test',function(){
+  
+});

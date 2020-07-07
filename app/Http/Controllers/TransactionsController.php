@@ -10,6 +10,7 @@ use App\User;
 use App\Events\AssetDangerLevel;
 use Auth;
 
+
 class TransactionsController extends Controller
 {
     public function store(Request $request,$id)
@@ -62,7 +63,7 @@ class TransactionsController extends Controller
         $asset_name = $asset->name;
 
         // dd($asset->name);
-
+ 
         foreach ($users as $key => $user) {
         array_push($user_array, $user->email);
           
@@ -89,4 +90,10 @@ class TransactionsController extends Controller
     	$transactions = Transaction::where('asset_id',$id)->get();
        	return view('asset.transaction')->withTransaction($transaction)->withTransactions($transactions);
     }
+
+
+    
+
+
+
 }

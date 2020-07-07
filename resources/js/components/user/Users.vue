@@ -1,7 +1,7 @@
 <template>
 
 	<div>
-		<button @click="openAddUser" class="bg-gray-700 mx-4  py-1 px-2 h-10 w-32 rounded text-white hover:bg-gray-500">Create User</button>
+		<button v-if="hasRoleAdministrator" @click="openAddUser" class="bg-gray-700 mx-4  py-1 px-2 h-10 w-32 rounded text-white hover:bg-gray-500">Create User</button>
 
 		<CreateUser :showing="openCreateUser" @close="openCreateUser = false" @newUser="addToUsers"></CreateUser>
 		<EditUser  :showingEditModal="openEditUser" @close="openEditUser = false" @editEvent="reciveEventEdit"></EditUser>
@@ -20,6 +20,9 @@
 					<td class="py-4 px-6 border-b border-gray-100 text-center">
 						<button class="py-1 px-2 w-24 rounded bg-blue-400" @click="openChangeUser(index)">Edit</button>
 						<button class="py-1 px-2 w-24 rounded bg-red-400">Delete</button>
+					</td>
+					<td class="py-4 px-6 border-b border-gray-100 text-center">
+                     <a v-if="hasRoleAdministrator" :href="'/give/'+'role/'+user.id" class="bg-gray-900 text-white px-4 py-2 rounded">Give Role</a>
 					</td>
 				</tr>
 			</tbody>
@@ -46,12 +49,17 @@ export default{
 			users : [],
 			openCreateUser:false,
 			openEditUser:false,
+			roles:[],
+			hasRoleDoctor:false,
+			hasRoleAdministrator:false
 		}
 	},
 
 	mounted(){
     
     this.getAssets()
+    this.checkRoleDoctors()
+    this.checkRoleAdministrator()
     	
 	},
 
@@ -86,6 +94,23 @@ export default{
        reciveEventEdit(value){
        	  this.users.push(value)
        	  // console.log(value.name)
+       },
+       
+        checkRoleDoctors(){
+
+       	axios.get('/hasRoleDoctor').then((res)=>{
+
+            this.hasRoleDoctor = res.data
+       	});
+       },
+
+       checkRoleAdministrator(){
+
+       	axios.get('/hasRoleAdministrator').then((res)=>{
+
+            this.hasRoleAdministrator = res.data
+            console.log(this.hasRoleAdministrator)
+       	});
        }
 	}
 

@@ -1,7 +1,7 @@
 <template>
 
 	<div>
-		<button @click="openAddAsset" class="bg-gray-700 mx-4  py-1 px-2 h-10 w-32 rounded text-white hover:bg-gray-500">Create Asset</button>
+		<button v-if="hasRoleAdministrator" @click="openAddAsset" class="bg-gray-700 mx-4  py-1 px-2 h-10 w-32 rounded text-white hover:bg-gray-500">Create Asset</button>
 
 		<CreateAsset :showing="openCreateAsset" @close="openCreateAsset = false" @newAsset="addToAsset"></CreateAsset>
 		<EditAsset  :showingEditModal="openEditAsset" :assetValue="asset" @close="openEditAsset = false"></EditAsset>
@@ -32,12 +32,12 @@
 					</td>
 
 					<td class="px-8 py-1 border">
-						<button @click="openStock(index)" class="py-1 px-2 w-28 rounded bg-green-400">
+						<button v-if="hasRoleDoctor || hasRoleAdministrator" @click="openStock(index)" class="py-1 px-2 w-28 rounded bg-green-400">
 							Add&Remove
 						</button>
 					</td>
 					<td class="px-8 py-1 border">
-						<a :href="'/show/'+'asset/'+ asset.id" class="py-1 px-2 w-24 rounded bg-yellow-700">View</a >
+						<a v-if="hasRoleAdministrator" :href="'/show/'+'asset/'+ asset.id" class="py-1 px-2 w-24 rounded bg-yellow-700">View</a >
 
 					</td>
 				</tr>
@@ -68,13 +68,17 @@ export default{
 			openCreateAsset:false,
 			openEditAsset:false,
 			openStocks:false,
-			asset:{}
+			asset:{},
+			hasRoleDoctor:false,
+			hasRoleAdministrator:false
 		}
 	},
 
 	mounted(){
     
     this.getAssets()
+    this.checkRoleDoctors()
+    this.checkRoleAdministrator()
 		
 	},
 
@@ -113,6 +117,23 @@ export default{
         this.assets.push(value)
 
         // console.log(value)
+       },
+
+       checkRoleDoctors(){
+
+       	axios.get('/hasRoleDoctor').then((res)=>{
+
+            this.hasRoleDoctor = res.data
+       	});
+       },
+
+       checkRoleAdministrator(){
+
+       	axios.get('/hasRoleAdministrator').then((res)=>{
+
+            this.hasRoleAdministrator = res.data
+            console.log(this.hasRoleAdministrator)
+       	});
        }
 	}
 
