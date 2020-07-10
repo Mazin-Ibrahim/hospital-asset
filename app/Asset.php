@@ -21,4 +21,9 @@ class Asset extends Model
       		return $this->name;
       	}
       }
+
+      public function hospital()
+      {
+      	return $this->belongsTo(Hospital::class);
+      }
 }

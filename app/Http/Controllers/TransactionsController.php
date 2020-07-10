@@ -24,75 +24,77 @@ class TransactionsController extends Controller
 
     	if($operation_type == 1){
 
-           $asset->stock = $asset->stock + $quantity;
-    	}
+         $asset->stock = $asset->stock + $quantity;
+     }
 
-        if($operation_type == 2){
+     if($operation_type == 2){
 
-           $asset->stock = $asset->stock - $quantity;
-    	}
+         $asset->stock = $asset->stock - $quantity;
+     }
 
-    	$transaction->date = $request->date;
+     $transaction->date = $request->date;
 
-    	$transaction->quantity = $quantity;
+     $transaction->quantity = $quantity;
 
-    	$transaction->operation = $operation_type;
+     $transaction->operation = $operation_type;
 
-    	$transaction->asset_id = $id;
+     $transaction->asset_id = $id;
 
-    	$transaction->user_id  = Auth::user()->id;
+     $transaction->user_id  = Auth::user()->id;
 
 
 
-    	$asset->save();
+     $asset->save();
 
 
         // --------------------send email--------------------------------
 
-    	$transaction->save();
+     $transaction->save();
 
-        $users = User::all();
+     $users = User::all();
 
         // dd($asset->name);
 
-        
-        if($asset->danger_level >= $asset->stock){
+     
+     if($asset->danger_level >= $asset->stock){
 
         $user_array  = [];
 
         $asset_name = $asset->name;
 
-        // dd($asset->name);
- 
         foreach ($users as $key => $user) {
-        array_push($user_array, $user->email);
-          
-          }
+
+            if($user->hasRole('administrator')){
+                
+                array_push($user_array, $user->email);
+            }
+            
+        }
 
         event (new AssetDangerLevel($asset_name,$user_array));
-        }
+    }
 
         // -----------------end send email----------------------------
 
 
 
-    	return  response()->json(['content' => $transaction, 'state' => 200]);
-         
-
-
-    }
-
-    public function show($id)
-    {
-    	 // dd($id);
-    	$transaction = Transaction::where('asset_id',$id)->first();
-
-    	$transactions = Transaction::where('asset_id',$id)->get();
-       	return view('asset.transaction')->withTransaction($transaction)->withTransactions($transactions);
-    }
-
-
+    return  response()->json(['content' => $transaction, 'state' => 200]);
     
+
+
+}
+
+public function show($id)
+{
+    	 // dd($id);
+   $transaction = Transaction::where('asset_id',$id)->first();
+
+   $transactions = Transaction::where('asset_id',$id)->get();
+   return view('asset.transaction')->withTransaction($transaction)->withTransactions($transactions);
+}
+
+
+
 
 
 

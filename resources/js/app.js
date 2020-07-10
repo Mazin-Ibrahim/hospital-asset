@@ -21,6 +21,10 @@ Vue.component('Assets', require('./components/asset/Assets').default);
 
 Vue.component('Users', require('./components/user/Users').default);
 
+// -----------------------hospital component---------------------
+
+Vue.component('Hospitals', require('./components/hospital/Hospitals').default);
+
 
 
 // ----------------------Auth---------------------------------------

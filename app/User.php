@@ -2,6 +2,7 @@
 
 namespace App;
 use App\Transaction;
+use App\Hospital;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -43,5 +44,10 @@ class User extends Authenticatable
     public function transactions(){
 
         return $this->hasMany(Transaction::class);
+    }
+
+    public function hospital()
+    {
+        return $this->belongsTo(Hospital::class);
     }
 }

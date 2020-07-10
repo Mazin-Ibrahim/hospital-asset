@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\mazin;
+use App\User;
 
 
 
@@ -18,7 +19,7 @@ use App\mazin;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
 Auth::routes();
 
@@ -36,20 +37,14 @@ Route::view('/ui', 'ui.index');
 Route::resource('assets','AssetsController')->only(['create', 'update','store','index']);
 
 
-
-
-
 // -----------------User-------------------------------------
 
 Route::resource('users','UsersController')->only(['create', 'update','store','index']);
 
 
-
-
 //-------------------transaction----------------------------------
 
 Route::post('/transactions/{id}','TransactionsController@store');
-
 Route::get('/show/asset/{id}','TransactionsController@show');
 
 
@@ -86,10 +81,25 @@ Route::get('/give/permission/{id}','PermissionsController@givePermission');
 Route::post('/postGivePermission','PermissionsController@postGivePermission')->name('postGivePermission');
 
 
-Route::get('/hasRoleDoctor','CheckUserController@checkRoleDoctors');
-Route::get('/hasRoleAdministrator','CheckUserController@checkRoleAdministrator');
+
+Route::get('/hospitals','HospitalsController@showHospital');
+Route::post('/hospitals/store','HospitalsController@store');
+Route::get('/hospitals/index','HospitalsController@index');
+Route::post('/hospitals/update/{id}','HospitalsController@update');
 
 
-Route::get('/test',function(){
-  
-});
+// Route::get('/test',function(){
+//         $user_array  = [];
+
+//       $users = User::all();
+
+//         foreach ($users as $key => $user) {
+
+//         	if($user->hasRole('administrator')){
+//             array_push($user_array, $user->email);
+//         }
+
+//           }
+
+//           dd($user_array);
+// });

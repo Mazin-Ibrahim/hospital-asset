@@ -30,6 +30,17 @@
 					<input type="password" class="form-input bg-gray-100 border-gray-300 focus:border-indigo-400 focus:shadow-none focus:bg-white mt-2 block w-cust"
 					v-model="form.password">
 				</label>
+			</div>
+
+			<div class="mt-8" v-if="hideHospital">
+				<label class="block">
+					<span class="text-gray-700">Hospital</span>
+					<select class="form-input bg-gray-100 border-gray-300 focus:border-indigo-400 focus:shadow-none focus:bg-white mt-2 block w-cust" v-model="form.hospital_id">
+						<option  v-for="hospital in hospitals" :value="hospital.id">
+							{{ hospital.name }}
+						</option>
+					</select>
+				</label>
 			</div> 
 
 			<div class="mt-8">
@@ -52,6 +63,9 @@ export default {
 		showing: {
 			required: true,
 			type: Boolean
+		},
+		hideHospital: {
+			
 		}
 	},
 
@@ -62,12 +76,19 @@ export default {
 				name:'',
 				email:'',
 				password:'',
+				hospital_id:''
 
 			},
 			errors:[],
+			hospitals:[]
 
 			
 		}
+	},
+
+	mounted(){
+
+     this.getHospitals()
 	},
 
 	methods:{
@@ -84,6 +105,7 @@ export default {
 					this.form.name = " "
 					this.form.email = " "
 					this.form.password = " "
+					this.hospital_id = " "
 
 				    this.$emit('newUser',res.data.content)
 					 
@@ -92,6 +114,14 @@ export default {
 			}).catch(err => {
 				console.log(err)
 			});
+		},
+
+			getHospitals(){
+			axios.get('/hospitals/index').then((res) => {
+
+				this.hospitals = res.data
+				
+			})
 		},
 
 		close() {

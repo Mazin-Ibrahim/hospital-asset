@@ -16,7 +16,7 @@ class AssetsController extends Controller
      */
     public function index()
     {
-        $assets = Asset::all();
+        $assets = Asset::where('hospital_id',auth()->user()->hospital_id)->get();
 
         // return response()->json(['content' => $assets,'state' => 200]);
         return $assets;
@@ -50,6 +50,7 @@ class AssetsController extends Controller
         $asset->descr  = $request->descr;
         $asset->stock = $request->stock;
         $asset->danger_level = $request->danger_level;
+        $asset->hospital_id = auth()->user()->hospital_id;
 
         $asset->save();
         return response()->json(['content' => $asset, 'state' => 200]);

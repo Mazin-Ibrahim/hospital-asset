@@ -41,11 +41,20 @@ class UsersController extends Controller
      */
     public function store(UsersRequest $request)
     {
+
+         // dd($request->all());
         $user = new User();
 
         $user->name = $request->name;
 
         $user->email  = $request->email;
+         if(is_null($request->hospital_id)){
+        
+        $user->hospital_id = auth()->user()->hospital_id;
+         }
+         else{
+           $user->hospital_id = $request->hospital_id; 
+        }
 
         $user->password = Hash::make($request->password);
 
@@ -65,6 +74,14 @@ class UsersController extends Controller
         $user->name = $request->name;
 
         $user->email  = $request->email;
+
+         if(is_null($request->hospital_id)){
+        
+        $user->hospital_id = auth()->user()->hospital_id;
+         }
+         else{
+           $user->hospital_id = $request->hospital_id; 
+        }
 
         $user->password = Hash::make($request->password);
 

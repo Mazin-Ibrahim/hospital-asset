@@ -1,7 +1,7 @@
 <template>
 
 	<div>
-		<button v-if="hasRoleAdministrator" @click="openAddAsset" class="bg-gray-700 mx-4  py-1 px-2 h-10 w-32 rounded text-white hover:bg-gray-500">Create Asset</button>
+		<button v-if="hasRoleAdministrator || hasRoleSuperAdmin" @click="openAddAsset" class="bg-gray-700 mx-4  py-1 px-2 h-10 w-32 rounded text-white hover:bg-gray-500">Create Asset</button>
 
 		<CreateAsset :showing="openCreateAsset" @close="openCreateAsset = false" @newAsset="addToAsset"></CreateAsset>
 		<EditAsset  :showingEditModal="openEditAsset" :assetValue="asset" @close="openEditAsset = false"></EditAsset>
@@ -32,12 +32,12 @@
 					</td>
 
 					<td class="px-8 py-1 border">
-						<button v-if="hasRoleDoctor || hasRoleAdministrator" @click="openStock(index)" class="py-1 px-2 w-28 rounded bg-green-400">
+						<button  @click="openStock(index)" class="py-1 px-2 w-28 rounded bg-green-400">
 							Add&Remove
 						</button>
 					</td>
 					<td class="px-8 py-1 border">
-						<a v-if="hasRoleAdministrator" :href="'/show/'+'asset/'+ asset.id" class="py-1 px-2 w-24 rounded bg-yellow-700">View</a >
+						<a  :href="'/show/'+'asset/'+ asset.id" class="py-1 px-2 w-24 rounded bg-yellow-700">View</a >
 
 					</td>
 				</tr>
@@ -61,6 +61,8 @@ export default{
 
 	},
 
+	props:['hasRoleAdministrator','hasRoleDoctor','hasRoleSuperAdmin'],
+
 	data(){
 		return {
 
@@ -69,22 +71,20 @@ export default{
 			openEditAsset:false,
 			openStocks:false,
 			asset:{},
-			hasRoleDoctor:false,
-			hasRoleAdministrator:false
+			
 		}
 	},
 
 	mounted(){
     
     this.getAssets()
-    this.checkRoleDoctors()
-    this.checkRoleAdministrator()
+   
+
+   console.log(this.hasRoleAdministrator)
+     
 		
 	},
 
-	// updated(){
- //      this.getAssets()
-	// },
 
 	methods:{
 		getAssets(){
@@ -119,22 +119,22 @@ export default{
         // console.log(value)
        },
 
-       checkRoleDoctors(){
+       // checkRoleDoctors(){
 
-       	axios.get('/hasRoleDoctor').then((res)=>{
+       // 	axios.get('/hasRoleDoctor').then((res)=>{
 
-            this.hasRoleDoctor = res.data
-       	});
-       },
+       //      this.hasRoleDoctor = res.data
+       // 	});
+       // },
 
-       checkRoleAdministrator(){
+       // checkRoleAdministrator(){
 
-       	axios.get('/hasRoleAdministrator').then((res)=>{
+       // 	axios.get('/hasRoleAdministrator').then((res)=>{
 
-            this.hasRoleAdministrator = res.data
-            console.log(this.hasRoleAdministrator)
-       	});
-       }
+       //      this.hasRoleAdministrator = res.data
+       //      console.log(this.hasRoleAdministrator)
+       // 	});
+       // }
 	}
 
 }

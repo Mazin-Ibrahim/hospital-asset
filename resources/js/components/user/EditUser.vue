@@ -23,6 +23,17 @@
 				</label>
 			</div>
 
+			<div class="mt-8" v-if="hideHospital">
+				<label class="block">
+					<span class="text-gray-700">Hospital</span>
+					<select class="form-input bg-gray-100 border-gray-300 focus:border-indigo-400 focus:shadow-none focus:bg-white mt-2 block w-cust" v-model="form.hospital_id">
+						<option  v-for="hospital in hospitals" :value="hospital.id">
+							{{ hospital.name }}
+						</option>
+					</select>
+				</label>
+			</div>
+
 
 			<div class="mt-8">
 				<label class="block">
@@ -50,6 +61,7 @@ export default {
 
 	props: [
 		'showingEditModal',
+		'hideHospital'
 	],
 
    
@@ -58,8 +70,14 @@ export default {
 		return{
 
 			form:{},
-			errors:[]
+			errors:[],
+			hospitals:[]
 		}
+	},
+
+	mounted(){
+
+		this.getHospitals()
 	},
 
 	methods:{
@@ -91,6 +109,14 @@ export default {
 		
 
 
+		},
+
+		getHospitals(){
+			axios.get('/hospitals/index').then((res) => {
+
+				this.hospitals = res.data
+				
+			})
 		},
 		close() {
 			this.$emit('close');

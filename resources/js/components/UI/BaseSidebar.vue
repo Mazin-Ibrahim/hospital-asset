@@ -59,15 +59,39 @@
                 </li>
                
               
-                <li class="px-2 py-3 hover:bg-gray-900 rounded mt-2">
-                    <a href="#" class="flex items-center">
+                <li v-if="hasRoleSuperAdmin" class="px-2 py-3 hover:bg-gray-900 rounded mt-2">
+                    <a :href="'/hospitals'" class="flex items-center">
                         <svg class="w-6 text-gray-500" fill="none" stroke-linecap="round"
                              stroke-linejoin="round"
                              stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                             <path
                                 d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                         </svg>
-                        <span class="mx-2 text-gray-300">Reports</span>
+                        <span class="mx-2 text-gray-300">Hospitals</span>
+                    </a>
+                </li>
+
+                <li v-if="hasRoleSuperAdmin" class="px-2 py-3 hover:bg-gray-900 rounded mt-2">
+                    <a :href="'/roles'" class="flex items-center">
+                        <svg class="w-6 text-gray-500" fill="none" stroke-linecap="round"
+                             stroke-linejoin="round"
+                             stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path
+                                d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        <span class="mx-2 text-gray-300">Roles</span>
+                    </a>
+                </li>
+
+                 <li v-if="hasRoleSuperAdmin" class="px-2 py-3 hover:bg-gray-900 rounded mt-2">
+                    <a :href="'/permissions'" class="flex items-center">
+                        <svg class="w-6 text-gray-500" fill="none" stroke-linecap="round"
+                             stroke-linejoin="round"
+                             stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path
+                                d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        <span class="mx-2 text-gray-300">Permissions</span>
                     </a>
                 </li>
             </ul>
@@ -92,6 +116,8 @@
                 isOpen: false
             }
         },
+
+        props:['hasRoleSuperAdmin'],
         methods: {
             logout() {
                 axios.post('logout')

@@ -13,7 +13,7 @@
 
     <div class="flex flex-col md:flex-row">
 
-        <base-sidebar></base-sidebar>
+        <base-sidebar has-role-super-admin="{{auth()->user()->hasRole('super admin')}}"></base-sidebar>
 
         <div class="w-full md:flex-1">
             <nav class="hidden md:flex justify-between items-center bg-white p-4 shadow-md h-16">
